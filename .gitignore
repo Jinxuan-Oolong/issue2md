@@ -28,3 +28,6 @@ go.work.sum
 *.swp
 *.swo
 *.swa
+
+# personal settings
+.claude/settings.local.json

@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/bigwhite/issue2md/internal/github"
+	"github.com/Jinxuan-Oolong/my-issue2md-project/internal/github"
 )
 
 const githubBaseURL = "https://github.com"

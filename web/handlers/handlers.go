@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/bigwhite/issue2md/internal/converter"
-	"github.com/bigwhite/issue2md/internal/github"
+	"github.com/Jinxuan-Oolong/my-issue2md-project/internal/converter"
+	"github.com/Jinxuan-Oolong/my-issue2md-project/internal/github"
 )
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {

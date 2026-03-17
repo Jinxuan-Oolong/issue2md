@@ -6,8 +6,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/bigwhite/issue2md/internal/converter"
-	"github.com/bigwhite/issue2md/internal/github"
+	"github.com/Jinxuan-Oolong/my-issue2md-project/internal/converter"
+	"github.com/Jinxuan-Oolong/my-issue2md-project/internal/github"
 )
 
 var enableReactions = flag.Bool("enable-reactions", false, "Include reactions in the output.")
