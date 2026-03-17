@@ -1,9 +1,13 @@
 {
   "permissions": {
+    "defaultMode": "plan",
     "allow": [
+      "Read(*.go)",
       "Read(go.mod)",
       "Read(Makefile)",
       "Read(README.md)",
+      "Read(constitution.md)",
+      "Read(specs/**)",
       "Grep",
       "Glob",
       "LS",
@@ -13,19 +17,7 @@
       "Bash(go:test:*)",
       "Bash(gofmt:*)",
       "Bash(goimports:*)",
-      "Bash(golangci-lint:run:*)",
-      "WebFetch(domain:pkg.go.dev)",
-      "WebFetch(domain:*.golang.org)",
-      "WebFetch(domain:github.com)",
-      "Bash(go list:*)",
-      "Bash(go version:*)"
-    ],
-    "deny": [
-      "Read(./.env*)",
-      "Read(~/.ssh/**)",
-      "Read(//etc/passwd)",
-      "Bash(rm:*)",
-      "Bash(git:push:*)"
+      "Bash(golangci-lint:run:*)"
     ],
     "ask": [
       "Write",
@@ -36,7 +28,14 @@
       "Bash(git:add:*)",
       "Bash(git:commit:*)"
     ],
-    "defaultMode": "default"
+    "deny": [
+      "Read(./.env*)",
+      "Read(*.pem)",
+      "Read(*.key)",
+      "Bash(rm:*)",
+      "Bash(git:push:*)",
+      "WebFetch"
+    ]
   },
   "sandbox": {
     "autoAllowBashIfSandboxed": false,
