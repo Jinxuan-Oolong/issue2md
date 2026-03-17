@@ -1,12 +1,51 @@
-name: AI Code Review
+name: AI CI
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
 
 jobs:
-  ai-review:
+  # ---------------------------------------------------------------------------
+  # Job 1: Test / Lint / Build
+  # 所有推送到 main 與所有 PR 皆觸發
+  # ---------------------------------------------------------------------------
+  ci:
+    name: Test / Lint / Build
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Run tests
+        run: make test
+
+      - name: Run lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
+
+      - name: Build binaries
+        run: make build
+
+  # ---------------------------------------------------------------------------
+  # Job 2: AI Code Review
+  # 僅在 PR 事件時觸發，依賴 ci job 通過後才執行
+  # ---------------------------------------------------------------------------
+  ai-review:
+    name: AI Code Review
+    runs-on: ubuntu-latest
+    needs: ci
+    if: github.event_name == 'pull_request'
 
     permissions:
       contents: read
@@ -35,7 +74,6 @@ jobs:
       - name: Run AI Review
         id: review
         run: |
-
           PROMPT="你是一個資深 Go 程式碼審查員。
           請審查這次 Pull Request 的程式碼變更。
           關注：
