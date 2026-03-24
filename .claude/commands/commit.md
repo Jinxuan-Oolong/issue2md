@@ -85,3 +85,14 @@ allowed-tools: Bash(git diff:*), Bash(git branch:*), Bash(git log:*), Bash(git s
 ```
 
 5. 輸出最終執行的 commit message，不需要其他說明
+
+6. 處理額外需求
+
+   如果使用者有額外要求（例如 push、PR）：
+
+   常見情境：
+   - push → git push
+   - push + PR → push 後建立 PR
+   - tag → 建立 tag
+
+   ⚠️ 只執行使用者明確要求的操作
